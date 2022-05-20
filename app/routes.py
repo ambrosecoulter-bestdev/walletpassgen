@@ -10,6 +10,9 @@ from app import app, db
 from app.forms import LoginForm, RegistrationForm, EditProfileForm
 from app.models import User
 
+from passbook.models import Pass, Barcode, StoreCard
+
+
 
 ###
 # Init
