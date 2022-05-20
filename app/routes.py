@@ -139,14 +139,15 @@ def test_gen():
     key_pem = "private.pem"
     wwdr_pem = "wwdr_certificate.pem"
     key_pem_password = "testing-123-drop-mic"
+    organization_name="testorg"
 
     cardInfo = StoreCard()
     cardInfo.addPrimaryField('name', 'John Doe', 'Name')
 
     passfile = Pass(cardInfo,
-                    passTypeIdentifier=cls.pass_type_identifier,
-                    organizationName=cls.organization_name,
-                    teamIdentifier=cls.team_identifier)
+                    passTypeIdentifier=pass_type_identifier,
+                    organizationName=organization_name,
+                    teamIdentifier=team_identifier)
 
     # charge_response.id is trackable via the Stripe dashboard
     passfile.serialNumber = "324234234"
@@ -156,10 +157,10 @@ def test_gen():
     # Including the icon and logo is necessary for the passbook to be valid.
     passfile.addFile("icon.png", open("icon.png", "rb"))
     passfile.addFile("logo.png", open("logo.png", "rb"))
-    _ = passfile.create(cls.cert_pem,
-                        cls.key_pem,
-                        cls.wwdr_pem,
-                        cls.key_pem_password,
+    _ = passfile.create(cert_pem,
+                        key_pem,
+                        wwdr_pem,
+                        key_pem_password,
                         "pass_name.pkpass")
 
 
