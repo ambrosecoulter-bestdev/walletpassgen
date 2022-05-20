@@ -17,7 +17,6 @@ import json
 from M2Crypto import BIO
 from M2Crypto import SMIME
 from M2Crypto import X509
-from path import Path
 
 
 
