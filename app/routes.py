@@ -12,6 +12,13 @@ from app.models import User
 
 from wallet.models import Pass, Barcode, StoreCard
 
+import json
+
+from M2Crypto import BIO
+from M2Crypto import SMIME
+from M2Crypto import X509
+from path import Path
+
 
 
 ###
@@ -27,6 +34,17 @@ def before_request():
 ###
 # Routes
 ###
+
+
+cwd = Path(__file__).parent
+
+wwdr_certificate = cwd / 'certificates' / 'wwdr_certificate.pem'
+certificate = cwd / 'certificates' / 'certificate.pem'
+key = cwd / 'certificates' / 'private.key'
+password_file = cwd / 'certificates' / 'password.txt'
+
+
+
 
 @app.route('/')
 @app.route('/index')
@@ -109,3 +127,43 @@ def edit_profile():
         form.about_me.data = current_user.about_me
     return render_template('edit_profile.html', title='Edit Profile',
                            form=form)
+
+
+
+
+@app.route('/testgen', methods=['GET', 'POST'])
+def test_gen():
+    pass_type_identifier = "pass.com.yourcompany.some_name"
+    team_identifier = "ABCDE1234"  # Your Apple team ID
+    cert_pem = "certficate.pem"
+    key_pem = "private.pem"
+    wwdr_pem = "wwdr_certificate.pem"
+    key_pem_password = "testing-123-drop-mic"
+
+    cardInfo = StoreCard()
+    cardInfo.addPrimaryField('name', 'John Doe', 'Name')
+
+    passfile = Pass(cardInfo,
+                    passTypeIdentifier=cls.pass_type_identifier,
+                    organizationName=cls.organization_name,
+                    teamIdentifier=cls.team_identifier)
+
+    # charge_response.id is trackable via the Stripe dashboard
+    passfile.serialNumber = "324234234"
+    passfile.barcode = Barcode(message = "testqrgen", format=BarcodeFormat.QR)
+    passfile.description = "testgen"
+
+    # Including the icon and logo is necessary for the passbook to be valid.
+    passfile.addFile("icon.png", open("icon.png", "rb"))
+    passfile.addFile("logo.png", open("logo.png", "rb"))
+    _ = passfile.create(cls.cert_pem,
+                        cls.key_pem,
+                        cls.wwdr_pem,
+                        cls.key_pem_password,
+                        "pass_name.pkpass")
+
+
+@app.route("/passes/<path:fname>")
+def passes_proxy(fname):
+    """static passes serve"""
+    return send_from_directory("/", fname, mimetype="application/vnd.apple.pkpass")
