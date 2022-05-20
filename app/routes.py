@@ -164,7 +164,3 @@ def test_gen():
                         "pass_name.pkpass")
 
 
-@app.route("/passes/<path:fname>")
-def passes_proxy(fname):
-    """static passes serve"""
-    return send_from_directory("/", fname, mimetype="application/vnd.apple.pkpass")
