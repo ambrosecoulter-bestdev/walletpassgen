@@ -133,34 +133,13 @@ def edit_profile():
 
 @app.route('/testgen', methods=['GET', 'POST'])
 def test_gen():
-    pass_type_identifier = "pass.com.yourcompany.some_name"
-    team_identifier = "ABCDE1234"  # Your Apple team ID
-    cert_pem = app.root_path+"/certficate.pem"
-    key_pem = app.root_path+"/private.key"
-    wwdr_pem = app.root_path+"/wwdr_certificate.pem"
-    key_pem_password = "testing-123-drop-mic"
-    organization_name="testorg"
 
     cardInfo = StoreCard()
-    cardInfo.addPrimaryField('name', 'John Doe', 'Name')
-
-    passfile = Pass(cardInfo,
-                    passTypeIdentifier=pass_type_identifier,
-                    organizationName=organization_name,
-                    teamIdentifier=team_identifier)
-
-    # charge_response.id is trackable via the Stripe dashboard
-    passfile.serialNumber = "324234234"
-    passfile.barcode = Barcode(message = "testqrgen", format="PKBarcodeFormatQR")
-    passfile.description = "testgen"
-
-    # Including the icon and logo is necessary for the passbook to be valid.
-    passfile.addFile("icon.png", open(app.root_path+"/static/images/icon.png", "rb"))
-    passfile.addFile("logo.png", open(app.root_path+"/static/images/logo.png", "rb"))
-    _ = passfile.create(cert_pem,
-                        key_pem,
-                        wwdr_pem,
-                        key_pem_password,
-                        "pass_name.pkpass")
-    return "success"
-
+    cardInfo.addPrimaryField('name', u'Jähn Doe', 'Name')
+    barcodeFormat = "PKBarcodeFormatQR"
+    stdBarcode = Barcode('test barcode', barcodeFormat, 'alternate text')
+    passfile = Pass(cardInfo, organizationName='Org Name', passTypeIdentifier='Pass Type ID', teamIdentifier='Team Identifier')
+    passfile.barcode = stdBarcode
+    passfile.serialNumber = '1234567'
+    passfile.description = 'A Sample Pass'
+    return passfile
