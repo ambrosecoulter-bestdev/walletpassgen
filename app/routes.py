@@ -1,5 +1,5 @@
 #External Imports
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, send_file
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 import uuid
@@ -142,5 +142,6 @@ def test_gen():
     passfile.barcode = stdBarcode
     passfile.serialNumber = '1234567'
     passfile.description = 'A Sample Pass'
-
-    return passfile.create(app.root_path+'/certificate.pem', app.root_path+'/private.key', app.root_path+'/wwdr_certificate.pem', "testing-123-drop-mic" , 'test.pkpass')
+     
+    passfile.create(app.root_path+'/certificate.pem', app.root_path+'/private.key', app.root_path+'/wwdr_certificate.pem', "testing-123-drop-mic" , app.root_path+'test1.pkpass')
+    return send_file(app.root_path+"/test1.pkpass", as_attachment=False)
