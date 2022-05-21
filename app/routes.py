@@ -162,5 +162,5 @@ def test_gen():
                         wwdr_pem,
                         key_pem_password,
                         "pass_name.pkpass")
-
+    return "success"
 
