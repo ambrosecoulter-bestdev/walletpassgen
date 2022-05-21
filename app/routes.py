@@ -136,7 +136,7 @@ def test_gen():
     pass_type_identifier = "pass.com.yourcompany.some_name"
     team_identifier = "ABCDE1234"  # Your Apple team ID
     cert_pem = app.root_path+"/certficate.pem"
-    key_pem = app.root_path+"/private.pem"
+    key_pem = app.root_path+"/private.key"
     wwdr_pem = app.root_path+"/wwdr_certificate.pem"
     key_pem_password = "testing-123-drop-mic"
     organization_name="testorg"
