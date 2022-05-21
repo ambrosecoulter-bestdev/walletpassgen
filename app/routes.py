@@ -48,7 +48,7 @@ def test_gen():
     barcodeFormat = "PKBarcodeFormatQR"
     stdBarcode = Barcode('test barcode', barcodeFormat, 'alternate text')
     passfile = Pass(cardInfo, organizationName='Org Name', passTypeIdentifier='pass.com.yourcompany.some_name', teamIdentifier='ABCDE1234')
-    passfile.barcode = stdBarcode
+    
     passfile.serialNumber = '1234567'
     passfile.description = 'A Sample Pass'
     passfile.addFile('icon.png', open(app.root_path+'/static/images/icon.png', 'rb'))
