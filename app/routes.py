@@ -151,7 +151,7 @@ def test_gen():
 
     # charge_response.id is trackable via the Stripe dashboard
     passfile.serialNumber = "324234234"
-    passfile.barcode = Barcode(message = "testqrgen", format=BarcodeFormat.QR)
+    passfile.barcode = Barcode(message = "testqrgen", format="PKBarcodeFormatQR")
     passfile.description = "testgen"
 
     # Including the icon and logo is necessary for the passbook to be valid.
