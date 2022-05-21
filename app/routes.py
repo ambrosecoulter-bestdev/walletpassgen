@@ -142,4 +142,5 @@ def test_gen():
     passfile.barcode = stdBarcode
     passfile.serialNumber = '1234567'
     passfile.description = 'A Sample Pass'
-    return passfile
+
+    return passfile.create()
