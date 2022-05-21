@@ -143,5 +143,5 @@ def test_gen():
     passfile.serialNumber = '1234567'
     passfile.description = 'A Sample Pass'
      
-    passfile.create(app.root_path+'/certificate.pem', app.root_path+'/private.key', app.root_path+'/wwdr_certificate.pem', "testing-123-drop-mic" , app.root_path+'test1.pkpass')
-    return send_file(app.root_path+"/test1.pkpass", as_attachment=False)
+    passfile.create(app.root_path+'/certificate.pem', app.root_path+'/private.key', app.root_path+'/wwdr_certificate.pem', "testing-123-drop-mic" , 'test1.pkpass')
+    return send_file("/root/test1.pkpass", as_attachment=False)
