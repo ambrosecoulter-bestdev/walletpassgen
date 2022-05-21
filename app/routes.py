@@ -56,4 +56,9 @@ def test_gen():
 
      
     passfile.create(app.root_path+'/certificate.pem', app.root_path+'/private.key', app.root_path+'/wwdr_certificate.pem', "testing-123-drop-mic" , '/root/walletpassgen/generatedpasses/'+pkpassuuid+'.pkpass')
-    return send_file("/root/walletpassgen/generatedpasses/"+pkpassuuid+".pkpass", as_attachment=False)
+    return pkpassuuid
+
+
+@app.route('/passdownload/<passid>', methods=['GET', 'POST'])
+def pass_download(passid):
+    return send_file("/root/walletpassgen/generatedpasses/"+passid+".pkpass", as_attachment=False)
