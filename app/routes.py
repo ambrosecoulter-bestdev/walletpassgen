@@ -51,6 +51,9 @@ def test_gen():
     passfile.barcode = stdBarcode
     passfile.serialNumber = '1234567'
     passfile.description = 'A Sample Pass'
+    passfile.addFile('icon.png', open(app.root_path+'/static/images/icon.png', 'rb'))
+    passfile.addFile('logo.png', open(app.root_path+'/static/images/logo.png', 'rb'))
+
      
     passfile.create(app.root_path+'/certificate.pem', app.root_path+'/private.key', app.root_path+'/wwdr_certificate.pem', "testing-123-drop-mic" , 'thisisatestpass.pkpass')
     return send_file("/root/walletpassgen/thisisatestpass.pkpass", as_attachment=False)
