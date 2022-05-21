@@ -156,7 +156,7 @@ def test_gen():
 
     # Including the icon and logo is necessary for the passbook to be valid.
     passfile.addFile("icon.png", open(app.root_path+"/static/images/icon.png", "rb"))
-    passfile.addFile("logo.png", open(app.root_path+"logo.png", "rb"))
+    passfile.addFile("logo.png", open(app.root_path+"/static/images/logo.png", "rb"))
     _ = passfile.create(cert_pem,
                         key_pem,
                         wwdr_pem,
