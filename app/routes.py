@@ -62,8 +62,8 @@ def test_gen():
             cardInfo.addPrimaryField(pfi["key"], pfi["value"], pfi["label"])
         #SECONDARY
         if request.form['SecondaryField'] != '':
-            pfi = json.loads(request.form['SecondaryField'])
-            cardInfo.addPrimaryField(pfi["key"], pfi["value"], pfi["label"])
+            sfi = json.loads(request.form['SecondaryField'])
+            cardInfo.addPrimaryField(sfi["key"], sfi["value"], sfi["label"])
 
 
 
@@ -74,9 +74,11 @@ def test_gen():
 
 
         #BARCODE
-        barcodeFormat = "PKBarcodeFormatQR"
-        stdBarcode = Barcode('test barcode', barcodeFormat, 'alternate text')
-        passfile.barcode = stdBarcode
+        if request.form['Barcode'] != '':
+            bfi = json.loads(request.form['Barcode'])
+            barcodeFormat = sfi["barcodeFormat"]
+            stdBarcode = Barcode(sfi["value"], barcodeFormat, sfi["alternateText"])
+            passfile.barcode = stdBarcode
     
 
         
