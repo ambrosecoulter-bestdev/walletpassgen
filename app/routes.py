@@ -69,7 +69,8 @@ def test_gen():
         passfile.addFile('icon.png', open(app.root_path+'/static/images/icon.png', 'rb'))
         passfile.addFile('icon@2x.png', open(app.root_path+'/static/images/icon.png', 'rb'))
         passfile.addFile('logo.png', open(app.root_path+'/static/images/logo.png', 'rb'))
-
+    else:
+        return 'error'
      
 
 
