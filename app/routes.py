@@ -4,6 +4,8 @@ from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 import uuid
 from datetime import datetime
+import urllib
+import os
 
 #Internal Imports
 from app import app, db
@@ -89,9 +91,9 @@ def test_gen():
 
         
         #LOGOS
-        passfile.addFile('icon.png', open('https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fs3.amazonaws.com%2Fappforest_uf%2Ff1637886268633x327939556267436740%2Fsilver-rose-logo-blue-2.png?w=128&h=161&auto=compress&fit=crop&dpr=1', 'rb'))
-        passfile.addFile('icon@2x.png', open('https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fs3.amazonaws.com%2Fappforest_uf%2Ff1637886268633x327939556267436740%2Fsilver-rose-logo-blue-2.png?w=128&h=161&auto=compress&fit=crop&dpr=1', 'rb'))
-        passfile.addFile('logo.png', open('https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fs3.amazonaws.com%2Fappforest_uf%2Ff1637886268633x327939556267436740%2Fsilver-rose-logo-blue-2.png?w=128&h=161&auto=compress&fit=crop&dpr=1', 'rb'))
+        passfile.addFile('icon.png', open('/root/walletpassgen/ticketimages/'+request.form['iconPath'], 'rb'))
+        passfile.addFile('icon@2x.png', open('/root/walletpassgen/ticketimages/'+request.form['iconPath'], 'rb'))
+        passfile.addFile('logo.png', open('/root/walletpassgen/ticketimages/'+request.form['logoPath'], 'rb'))
     else:
         return 'error'
      
@@ -103,9 +105,22 @@ def test_gen():
 
     jsonpassuuid = {'passuuid':pkpassuuid}
     passfile.create(app.root_path+'/certificate.pem', app.root_path+'/key.pem', app.root_path+'/wwdr_certificate.pem', "challenge1!" , '/root/walletpassgen/generatedpasses/'+pkpassuuid+'.pkpass')
+    os.remove('/root/walletpassgen/ticketimages/'+request.form['iconPath'])
+    os.remove('/root/walletpassgen/ticketimages/'+request.form['logoPath'])
     return json.dumps(jsonpassuuid)
 
 
 @app.route('/passdownload/<passid>', methods=['GET', 'POST'])
 def pass_download(passid):
     return send_file("/root/walletpassgen/generatedpasses/"+passid+".pkpass", as_attachment=False)
+
+
+
+
+@app.route('/imageupload', methods=['GET', 'POST'])
+def image_upload():
+    imageuuid = str(uuid.uuid4())
+    if request.form['imageURL'] != '':
+        urllib.urlretrieve (request.form['imageURL'], "/root/walletpassgen/ticketimages/"+imageuuid+"."+request.form['imageType'])
+    jsonimageuuid = {'imagePath':imageuuid+request.form['imageType']}
+    return jsonimageuuid
