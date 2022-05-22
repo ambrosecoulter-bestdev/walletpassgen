@@ -68,7 +68,7 @@ def test_gen():
         if request.form['PassBackInformation'] != '':
             bffi = json.loads(request.form['PassBackInformation'])
             cardInfo.addBackField(bffi["key"], bffi["value"], bffi["label"])
-
+        cardInfo.addBackField('disclaimer', 'This pass has been created "" for evaluation purposes using the third party service Spectrum which is owned and operated by Spectrum in Queensland Australia. The pass issuer has attested that any trademarks and/or copyrighted content contained within this pass are being used with the consent of the owner. Questions, complaints or claims with respect to this pass should be addressed to the pass issuer"". NEITHER APPLE NOR SPECTRUM SHALL be liable for any damages or losses arising for any use, distribution, misuse, reliance on, inability to use, interruption, suspension or termination of passbook, this pass, or any services provided in connection therewithin, including but not limited to any loss or failure to display your pass in passbook or any claim arising from any use of the foregoing by you, the pass issuer.', 'Disclaimer')
 
 
         #CUSTOMISATION
