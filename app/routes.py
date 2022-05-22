@@ -76,8 +76,8 @@ def test_gen():
         #BARCODE
         if request.form['Barcode'] != '':
             bfi = json.loads(request.form['Barcode'])
-            barcodeFormat = sfi["barcodeFormat"]
-            stdBarcode = Barcode(sfi["value"], barcodeFormat, sfi["alternateText"])
+            barcodeFormat = bfi["barcodeFormat"]
+            stdBarcode = Barcode(bfi["value"], barcodeFormat, bfi["alternateText"])
             passfile.barcode = stdBarcode
     
 
