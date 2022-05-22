@@ -10,7 +10,7 @@ from app import app, db
 from app.forms import LoginForm, RegistrationForm, EditProfileForm
 from app.models import User
 
-from wallet.models import Pass, Barcode, StoreCard
+from wallet.models import Pass, Barcode, StoreCard, EventTicket
 
 import json
 
@@ -42,13 +42,15 @@ def before_request():
 @app.route('/testgen', methods=['GET', 'POST'])
 def test_gen():
     pkpassuuid = str(uuid.uuid4())
-    cardInfo = StoreCard()
+    cardInfo = EventTicket()
     cardInfo.addPrimaryField('name', u'Jähn Doe', 'Name')
+    cardInfo.backgroundColor('#00B1E2')
 
     barcodeFormat = "PKBarcodeFormatQR"
     stdBarcode = Barcode('test barcode', barcodeFormat, 'alternate text')
     passfile = Pass(cardInfo, organizationName='Org Name', passTypeIdentifier='pass.com.spectrum.ticketpass', teamIdentifier='PFWC6XGUU8')
-    
+
+    passfile.barcode = stdBarcode
     passfile.serialNumber = pkpassuuid
     passfile.description = 'A Sample Pass'
     passfile.addFile('icon.png', open(app.root_path+'/static/images/icon.png', 'rb'))
