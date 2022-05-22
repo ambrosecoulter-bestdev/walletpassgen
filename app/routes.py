@@ -59,7 +59,8 @@ def test_gen():
 
      
     passfile.create(app.root_path+'/certificate.pem', app.root_path+'/key.pem', app.root_path+'/wwdr_certificate.pem', "challenge1!" , '/root/walletpassgen/generatedpasses/'+pkpassuuid+'.pkpass')
-    return pkpassuuid
+    # return pkpassuuid
+    return send_file("/root/walletpassgen/generatedpasses/"+pkpassuuid+".pkpass", as_attachment=False)
 
 
 @app.route('/passdownload/<passid>', methods=['GET', 'POST'])
