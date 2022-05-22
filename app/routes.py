@@ -46,7 +46,7 @@ def test_gen():
 
 
     #EVENT TICKET GENERATION
-    if request.data.tickettype == 'EventTicket':
+    if request.form.TicketType == 'EventTicket':
         cardInfo = EventTicket()
         
         passfile = Pass(cardInfo, organizationName='Org Name', passTypeIdentifier='pass.com.spectrum.ticketpass', teamIdentifier='PFWC6XGUU8')
