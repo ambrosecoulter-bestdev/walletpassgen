@@ -123,5 +123,5 @@ def image_upload():
     imageuuid = str(uuid.uuid4())
     if request.form['imageURL'] != '':
         urllib.request.urlretrieve(request.form['imageURL'], "/root/walletpassgen/ticketimages/"+imageuuid+"."+request.form['imageType'])
-    jsonimageuuid = {'imagePath':imageuuid+request.form['imageType']}
+    jsonimageuuid = {'imagePath':imageuuid+'.'+request.form['imageType']}
     return jsonimageuuid
