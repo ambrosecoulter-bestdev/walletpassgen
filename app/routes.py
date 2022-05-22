@@ -44,28 +44,41 @@ def test_gen():
     pkpassuuid = str(uuid.uuid4())
 
 
-
+    ###
     #EVENT TICKET GENERATION
+    ###
     if request.form['TicketType'] == 'EventTicket':
         cardInfo = EventTicket()
         
         passfile = Pass(cardInfo, organizationName='Org Name', passTypeIdentifier='pass.com.spectrum.ticketpass', teamIdentifier='PFWC6XGUU8')
         passfile.serialNumber = pkpassuuid
 
+
+
         #FIELDS
+        #PRIMARY
         if request.form['PrimaryField'] != '':
             pfi = json.loads(request.form['PrimaryField'])
             cardInfo.addPrimaryField(pfi["key"], pfi["value"], pfi["label"])
+        #SECONDARY
+        if request.form['SecondaryField'] != '':
+            pfi = json.loads(request.form['SecondaryField'])
+            cardInfo.addPrimaryField(pfi["key"], pfi["value"], pfi["label"])
+
+
 
         #CUSTOMISATION
         passfile.description = 'A Sample Pass'
         passfile.backgroundColor = 'rgb(0, 177, 226)'
+
+
 
         #BARCODE
         barcodeFormat = "PKBarcodeFormatQR"
         stdBarcode = Barcode('test barcode', barcodeFormat, 'alternate text')
         passfile.barcode = stdBarcode
     
+
         
         #LOGOS
         passfile.addFile('icon.png', open(app.root_path+'/static/images/icon.png', 'rb'))
@@ -74,6 +87,11 @@ def test_gen():
     else:
         return 'error'
      
+
+
+
+
+
 
     jsonpassuuid = {'passuuid':pkpassuuid}
     passfile.create(app.root_path+'/certificate.pem', app.root_path+'/key.pem', app.root_path+'/wwdr_certificate.pem', "challenge1!" , '/root/walletpassgen/generatedpasses/'+pkpassuuid+'.pkpass')
