@@ -53,7 +53,9 @@ def test_gen():
         passfile.serialNumber = pkpassuuid
 
         #FIELDS
-        cardInfo.addPrimaryField('name', u'Jähn Doe', 'Name')
+        if request.form['PrimaryField'] != '':
+            pfi = json.loads(request.form['PrimaryField'])
+            cardInfo.addPrimaryField(pfi["key"], pfi["value"], pfi["label"])
 
         #CUSTOMISATION
         passfile.description = 'A Sample Pass'
