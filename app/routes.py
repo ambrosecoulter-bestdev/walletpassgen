@@ -56,7 +56,7 @@ def test_gen():
     passfile.addFile('logo.png', open(app.root_path+'/static/images/logo.png', 'rb'))
 
      
-    passfile.create(app.root_path+'/certificate.pem', app.root_path+'/private.key', app.root_path+'/wwdr_certificate.pem', "testing-123-drop-mic" , '/root/walletpassgen/generatedpasses/'+pkpassuuid+'.pkpass')
+    passfile.create(app.root_path+'/certificate.pem', app.root_path+'/key.pem', app.root_path+'/wwdr_certificate.pem', "challenge1!" , '/root/walletpassgen/generatedpasses/'+pkpassuuid+'.pkpass')
     return pkpassuuid
 
 
