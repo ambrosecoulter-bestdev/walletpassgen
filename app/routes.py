@@ -68,8 +68,10 @@ def test_gen():
 
 
         #CUSTOMISATION
-        passfile.description = 'A Sample Pass'
-        passfile.backgroundColor = 'rgb(0, 177, 226)'
+        passfile.description = request.form['Description']
+        passfile.backgroundColor = request.form['BackgroundColor']
+        passfile.foregroundColor = request.form['ForegroundColor']
+        passfile.labelColor = request.form['LabelColor']
 
 
 
