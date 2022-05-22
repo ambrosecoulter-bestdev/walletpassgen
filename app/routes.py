@@ -50,7 +50,7 @@ def test_gen():
     stdBarcode = Barcode('test barcode', barcodeFormat, 'alternate text')
     passfile = Pass(cardInfo, organizationName='Org Name', passTypeIdentifier='pass.com.spectrum.ticketpass', teamIdentifier='PFWC6XGUU8')
 
-    passfile.backgroundColor('#00B1E2')
+    passfile.backgroundColor = 'rgb(255, 255, 255)'
     passfile.barcode = stdBarcode
     passfile.serialNumber = pkpassuuid
     passfile.description = 'A Sample Pass'
