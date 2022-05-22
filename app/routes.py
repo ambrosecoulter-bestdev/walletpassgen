@@ -44,7 +44,6 @@ def test_gen():
     pkpassuuid = str(uuid.uuid4())
     cardInfo = EventTicket()
     cardInfo.addPrimaryField('name', u'Jähn Doe', 'Name')
-    cardInfo.backgroundColor('rgb(255, 255, 255)')
     
 
     barcodeFormat = "PKBarcodeFormatQR"
@@ -55,6 +54,7 @@ def test_gen():
     passfile.barcode = stdBarcode
     passfile.serialNumber = pkpassuuid
     passfile.description = 'A Sample Pass'
+    passfile.backgroundColor = 'rgb(0, 177, 226)'
     passfile.addFile('icon.png', open(app.root_path+'/static/images/icon.png', 'rb'))
     passfile.addFile('icon@2x.png', open(app.root_path+'/static/images/icon.png', 'rb'))
     passfile.addFile('logo.png', open(app.root_path+'/static/images/logo.png', 'rb'))
