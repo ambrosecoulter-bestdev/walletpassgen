@@ -47,7 +47,7 @@ def test_gen():
 
     barcodeFormat = "PKBarcodeFormatQR"
     stdBarcode = Barcode('test barcode', barcodeFormat, 'alternate text')
-    passfile = Pass(cardInfo, organizationName='Org Name', passTypeIdentifier='pass.com.yourcompany.some_name', teamIdentifier='ABCDE1234')
+    passfile = Pass(cardInfo, organizationName='Org Name', passTypeIdentifier='pass.com.spectrum.ticketpass', teamIdentifier='PFWC6XGUU8')
     
     passfile.serialNumber = pkpassuuid
     passfile.description = 'A Sample Pass'
