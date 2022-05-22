@@ -106,8 +106,11 @@ def test_gen():
 
     jsonpassuuid = {'passuuid':pkpassuuid}
     passfile.create(app.root_path+'/certificate.pem', app.root_path+'/key.pem', app.root_path+'/wwdr_certificate.pem', "challenge1!" , '/root/walletpassgen/generatedpasses/'+pkpassuuid+'.pkpass')
-    os.remove('/root/walletpassgen/ticketimages/'+request.form['iconPath'])
-    os.remove('/root/walletpassgen/ticketimages/'+request.form['logoPath'])
+    
+    if os.path.exists('/root/walletpassgen/ticketimages/'+request.form['iconPath']):
+        os.remove('/root/walletpassgen/ticketimages/'+request.form['iconPath'])
+        
+    
     return json.dumps(jsonpassuuid)
 
 
