@@ -89,9 +89,9 @@ def test_gen():
 
         
         #LOGOS
-        passfile.addFile('icon.png', open(app.root_path+'/static/images/icon.png', 'rb'))
-        passfile.addFile('icon@2x.png', open(app.root_path+'/static/images/icon.png', 'rb'))
-        passfile.addFile('logo.png', open(app.root_path+'/static/images/logo.png', 'rb'))
+        passfile.addFile('icon.png', open('https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fs3.amazonaws.com%2Fappforest_uf%2Ff1637886268633x327939556267436740%2Fsilver-rose-logo-blue-2.png?w=128&h=161&auto=compress&fit=crop&dpr=1', 'rb'))
+        passfile.addFile('icon@2x.png', open('https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fs3.amazonaws.com%2Fappforest_uf%2Ff1637886268633x327939556267436740%2Fsilver-rose-logo-blue-2.png?w=128&h=161&auto=compress&fit=crop&dpr=1', 'rb'))
+        passfile.addFile('logo.png', open('https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fs3.amazonaws.com%2Fappforest_uf%2Ff1637886268633x327939556267436740%2Fsilver-rose-logo-blue-2.png?w=128&h=161&auto=compress&fit=crop&dpr=1', 'rb'))
     else:
         return 'error'
      
