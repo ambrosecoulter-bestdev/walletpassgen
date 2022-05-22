@@ -64,6 +64,10 @@ def test_gen():
         if request.form['SecondaryField'] != '':
             sfi = json.loads(request.form['SecondaryField'])
             cardInfo.addPrimaryField(sfi["key"], sfi["value"], sfi["label"])
+        #BACKFIELD
+        if request.form['PassBackInformation'] != '':
+            bffi = json.loads(request.form['PassBackInformation'])
+            cardInfo.addPrimaryField(bffi["key"], bffi["value"], bffi["label"])
 
 
 
