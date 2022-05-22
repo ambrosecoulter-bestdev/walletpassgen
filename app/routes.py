@@ -6,6 +6,7 @@ import uuid
 from datetime import datetime
 import urllib
 import os
+import urllib.request
 
 #Internal Imports
 from app import app, db
@@ -121,6 +122,6 @@ def pass_download(passid):
 def image_upload():
     imageuuid = str(uuid.uuid4())
     if request.form['imageURL'] != '':
-        urllib.urlretrieve (request.form['imageURL'], "/root/walletpassgen/ticketimages/"+imageuuid+"."+request.form['imageType'])
+        urllib.request.urlretrieve(request.form['imageURL'], "/root/walletpassgen/ticketimages/"+imageuuid+"."+request.form['imageType'])
     jsonimageuuid = {'imagePath':imageuuid+request.form['imageType']}
     return jsonimageuuid
