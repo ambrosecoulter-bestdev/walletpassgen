@@ -83,7 +83,7 @@ def test_gen():
     passfile.backgroundColor = request.form['BackgroundColor']
     passfile.foregroundColor = request.form['ForegroundColor']
     passfile.labelColor = request.form['LabelColor']
-    passfile.ibeacons = [IBeacon('efb8454c-6988-11eb-9439-0242ac130002', 0, 0), ]
+    passfile.ibeacons = [IBeacon('EFB8454C-6988-11EB-9439-0242AC130002',0,0),]
 
 
 
