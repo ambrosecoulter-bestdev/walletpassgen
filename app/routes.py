@@ -83,7 +83,7 @@ def test_gen():
     passfile.backgroundColor = request.form['BackgroundColor']
     passfile.foregroundColor = request.form['ForegroundColor']
     passfile.labelColor = request.form['LabelColor']
-    passfile.ibeacons = IBeacon("A648F270-BC33-483B-8614-E30A26B55FAA", 0, 0, relevantText = 'Tap to open your order code!')
+    passfile.ibeacons = IBeacon("A648F270-BC33-483B-8614-E30A26B55FAA", 0, 0)
 
 
 
